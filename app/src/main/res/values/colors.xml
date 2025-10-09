@@ -11,4 +11,8 @@
     <color name="subtle_dark">#23332a</color>
     <color name="placeholder_light">#6a8779</color>
     <color name="placeholder_dark">#8a9f93</color>
+    <color name="color_active_bg">#85FF9D</color>   <!-- verde clarito -->
+    <color name="color_active_text">#14C800</color> <!-- verde fuerte -->
+    <color name="color_inactive_text">#FF000000</color>
+    <color name="transparent">#00000000</color>
 </resources>

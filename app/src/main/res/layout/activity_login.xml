@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:ellipsize="end"
-        android:fontFamily="@font/lexend"
+        android:fontFamily="sans-serif-black"
         android:gravity="center"
         android:maxLines="1"
         android:text="RehApp"
