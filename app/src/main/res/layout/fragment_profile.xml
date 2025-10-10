@@ -56,6 +56,7 @@
                     android:src="@drawable/ic_cat"
                     android:scaleType="centerCrop"
                     android:contentDescription="foto_perfil"
+                    android:clipToOutline="true"
                     android:background="@drawable/circle_avatar_bg"/>
 
                 <TextView
