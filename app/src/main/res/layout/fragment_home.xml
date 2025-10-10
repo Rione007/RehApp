@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.HomeFragment">
 
-    <!-- Main content scrollable -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
@@ -18,37 +17,39 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="20dp"
+            android:background="@color/background_light">
 
-            <!-- Header: saludo + notificaciones -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:baselineAligned="false"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:paddingBottom="8dp">
+                android:paddingBottom="16dp">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tvGreetingSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hola Anderson"
-                        android:textColor="@color/black"
+                        android:text="Hola, Anderson 👋"
+                        android:textColor="@color/gray_dark"
                         android:textSize="14sp"/>
+
                     <TextView
                         android:id="@+id/tvWelcome"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Bienvenido"
-                        android:textSize="20sp"
+                        android:text="Bienvenido de nuevo"
+                        android:textSize="22sp"
                         android:textStyle="bold"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:layout_marginTop="2dp"/>
                 </LinearLayout>
 
                 <FrameLayout
@@ -57,14 +58,13 @@
 
                     <ImageButton
                         android:id="@+id/btnNotifications"
-                        android:layout_width="44dp"
-                        android:layout_height="44dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:src="@drawable/ic_notifications"
-                        android:contentDescription="notifications"
+                        android:contentDescription="Notificaciones"
                         app:tint="@color/gray" />
 
-                    <!-- red dot badge -->
                     <View
                         android:id="@+id/notify_badge"
                         android:layout_width="10dp"
@@ -72,220 +72,207 @@
                         android:layout_gravity="top|end"
                         android:layout_marginTop="4dp"
                         android:layout_marginEnd="4dp"
-                        android:background="@drawable/badge_red"/>
+                        android:background="@drawable/badge_red"
+                        android:visibility="gone"/>
                 </FrameLayout>
-
             </LinearLayout>
 
-            <!-- Próxima sesión card -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"
+                android:layout_marginBottom="16dp"/>
+
+
+            <!-- Sesion-->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                app:cardCornerRadius="16dp"
-                app:cardBackgroundColor="@color/bg_nextsesion"
-                app:cardElevation="4dp"
-                android:padding="16dp">
+                android:layout_height="150dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="16dp"
+                android:padding="24dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@color/bg_nextsesion">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/tvNextSessionTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Tu Próxima Sesión"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tvNextSessionSubtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Rehabilitación de rodilla"
+                        android:textColor="@color/gray"
+                        android:textSize="15sp"
+                        android:gravity="center"/>
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/ic_schedule"
+                            app:tint="@color/gray" />
 
                         <TextView
-                            android:id="@+id/tvNextSessionTitle"
+                            android:id="@+id/tvNextSessionTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Tu Próxima Sesión"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/black"/>
-
-                        <TextView
-                            android:id="@+id/tvNextSessionSubtitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rehabilitacion de rodilla"
-                            android:textSize="14sp"
+                            android:layout_marginStart="6dp"
+                            android:text="Hoy, 4:00 PM"
                             android:textColor="@color/gray"
-                            android:layout_marginTop="2dp"/>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_marginTop="8dp">
-
-                            <ImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:src="@drawable/ic_schedule"
-                                app:tint="@color/gray" />
-
-                            <TextView
-                                android:id="@+id/tvNextSessionTime"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Hoy, 4:00 PM"
-                                android:textSize="13sp"
-                                android:textColor="@color/gray"
-                                android:layout_marginStart="6dp"/>
-                        </LinearLayout>
-
+                            android:textSize="14sp"
+                            android:gravity="center"/>
                     </LinearLayout>
 
                     <Button
                         android:id="@+id/btnStart"
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:text="Comenzar"
+                        android:layout_height="42dp"
+                        android:layout_marginTop="10dp"
                         android:backgroundTint="@color/active"
-                        android:textColor="@android:color/white"
+                        android:elevation="3dp"
+                        android:paddingLeft="24dp"
+                        android:paddingRight="24dp"
+                        android:text="Comenzar"
                         android:textAllCaps="false"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:layout_marginStart="12dp"
-                        android:elevation="2dp"/>
+                        android:textColor="@android:color/white"
+                        android:layout_gravity="center"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Tu progreso -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tu Progreso"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/black"/>
 
+            <!-- Barra de progreso -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:cardCornerRadius="12dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardElevation="2dp"
-                android:padding="14dp">
+                android:layout_height="110dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="16dp"
+                android:padding="20dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tvProgressTitle"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
+                        android:layout_marginTop="12dp"
+                        android:text="Rehabilitación de rodilla"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:gravity="center" />
 
-                        <TextView
-                            android:id="@+id/tvProgressTitle"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:text="Rehabilitacion de Rodilla"
-                            android:textSize="14sp"
-                            android:textColor="@color/black"/>
-
-                        <TextView
-                            android:id="@+id/tvProgressPercent"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="75%"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/active"/>
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvProgressPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="75%"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/active"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center" />
 
                     <ProgressBar
                         android:id="@+id/progresoNivel"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="12dp"
+                        android:layout_marginTop="12dp"
                         android:progress="75"
-                        android:progressTint="@color/primary"
-                        style="@android:style/Widget.ProgressBar.Horizontal" />
+                        android:progressTint="@color/primary" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:text="3 de 4 semanas completadas"
-                        android:textSize="12sp"
-                        android:textColor="@color/black"
-                        android:gravity="end"
-                        android:layout_marginTop="8dp"/>
+                        android:textSize="13sp"
+                        android:textColor="@color/gray"
+                        android:gravity="center"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Consejo del día -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Consejo del día"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/black"/>
 
+            <!-- Consejo del día -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:cardCornerRadius="12dp"
-                app:cardBackgroundColor="@color/card_light"
-                app:cardElevation="2dp"
-                android:padding="14dp">
+                android:layout_height="150dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="32dp"
+                android:padding="20dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="@color/card_light">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
 
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="48dp"
                         android:src="@drawable/ic_lightbuld"
+                        android:layout_gravity="center"
                         app:tint="@color/active" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                    <TextView
+                        android:id="@+id/tip_title"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="12dp">
+                        android:text="Mantén la hidratación"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"/>
 
-                        <TextView
-                            android:id="@+id/tip_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Mantén la hidratación"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/black"/>
-
-                        <TextView
-                            android:id="@+id/tip_body"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Beber suficiente agua es crucial para la recuperación muscular y la elasticidad de las articulaciones."
-                            android:textSize="13sp"
-                            android:textColor="@color/gray_dark"
-                            android:layout_marginTop="6dp"/>
-                    </LinearLayout>
-
+                    <TextView
+                        android:id="@+id/tip_body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Beber suficiente agua es crucial para la recuperación muscular y la elasticidad de las articulaciones."
+                        android:textSize="14sp"
+                        android:textColor="@color/gray_dark"
+                        android:gravity="center"
+                        android:textAlignment="center"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <View android:layout_width="match_parent" android:layout_height="24dp"/>
+
+            <View android:layout_width="match_parent" android:layout_height="32dp"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
