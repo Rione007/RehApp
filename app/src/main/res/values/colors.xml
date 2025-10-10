@@ -15,4 +15,11 @@
     <color name="color_active_text">#14C800</color> <!-- verde fuerte -->
     <color name="color_inactive_text">#FF000000</color>
     <color name="transparent">#00000000</color>
+    <color name="bg_nextsesion">#3B37FFE6</color>
+    <color name="active">#2DD4BF</color>
+    <color name="gray">#9CA3AF</color>
+    <color name="gray_dark">#8B8F9D</color>
+    <color name="card_light">#FFFFFF</color>
+    <color name="card_dark">#1F2937</color>
+
 </resources>
