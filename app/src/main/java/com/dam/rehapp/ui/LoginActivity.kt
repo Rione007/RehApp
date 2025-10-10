@@ -1,4 +1,4 @@
-package com.dam.musicapp.ui
+package com.dam.rehapp.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,8 +9,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.dam.musicapp.R
-import com.dam.musicapp.model.User
+import com.dam.rehapp.R
+import com.dam.rehapp.model.User
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

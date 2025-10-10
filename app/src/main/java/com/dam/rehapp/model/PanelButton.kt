@@ -1,4 +1,4 @@
-package com.dam.musicapp.model
+package com.dam.rehapp.model
 
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment

@@ -1,6 +1,6 @@
-package com.dam.musicapp.model
+package com.dam.rehapp.model
 
-import com.dam.musicapp.R
+import com.dam.rehapp.R
 
 class Rehab {
     var id: Int = 0

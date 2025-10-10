@@ -1,4 +1,4 @@
-package com.dam.musicapp.ui.adapter
+package com.dam.rehapp.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.dam.musicapp.R
-import com.dam.musicapp.model.Rehab
+import com.dam.rehapp.R
+import com.dam.rehapp.model.Rehab
 
 class RehabAdapter(
     private val rehabs:List<Rehab>,

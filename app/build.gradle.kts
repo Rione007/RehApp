@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.dam.musicapp"
+    namespace = "com.dam.rehapp"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.dam.musicapp"
+        applicationId = "com.dam.rehapp"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

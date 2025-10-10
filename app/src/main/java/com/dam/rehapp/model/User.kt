@@ -1,4 +1,4 @@
-package com.dam.musicapp.model
+package com.dam.rehapp.model
 
 class User {
     var id: Int = 0

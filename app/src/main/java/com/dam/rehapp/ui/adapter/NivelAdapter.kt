@@ -1,4 +1,4 @@
-package com.dam.musicapp.ui.adapter
+package com.dam.rehapp.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +8,9 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.dam.musicapp.R
-import com.dam.musicapp.model.EstadoNivel
-import com.dam.musicapp.model.NivelRehab
+import com.dam.rehapp.R
+import com.dam.rehapp.model.EstadoNivel
+import com.dam.rehapp.model.NivelRehab
 
 class NivelAdapter(private val niveles: List<NivelRehab>) :
     RecyclerView.Adapter<NivelAdapter.NivelViewHolder>() {

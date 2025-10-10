@@ -1,16 +1,15 @@
-package com.dam.musicapp.ui.fragments
+package com.dam.rehapp.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dam.musicapp.R
-import com.dam.musicapp.model.Rehab
-import com.dam.musicapp.ui.adapter.RehabAdapter
+import com.dam.rehapp.R
+import com.dam.rehapp.model.Rehab
+import com.dam.rehapp.ui.adapter.RehabAdapter
 
 class RehabFragment : Fragment() {
     private val rehabs = Rehab.getRehabs()

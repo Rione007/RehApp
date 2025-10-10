@@ -1,4 +1,4 @@
-package com.dam.musicapp.ui.fragments
+package com.dam.rehapp.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dam.musicapp.R
-import com.dam.musicapp.model.NivelRehab
-import com.dam.musicapp.model.Rehab
-import com.dam.musicapp.ui.adapter.NivelAdapter
+import com.dam.rehapp.R
+import com.dam.rehapp.model.NivelRehab
+import com.dam.rehapp.model.Rehab
+import com.dam.rehapp.ui.adapter.NivelAdapter
 
 
 class NivelRehabFragment : Fragment() {

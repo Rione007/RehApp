@@ -1,4 +1,4 @@
-package com.dam.musicapp.model
+package com.dam.rehapp.model
 
 enum class EstadoNivel {
     COMPLETADO, DISPONIBLE, BLOQUEADO

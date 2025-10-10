@@ -1,4 +1,4 @@
-package com.dam.musicapp.ui
+package com.dam.rehapp.ui
 
 import android.os.Bundle
 import android.widget.ImageView
@@ -9,12 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import com.dam.musicapp.R
-import com.dam.musicapp.model.PanelButton
-import com.dam.musicapp.ui.fragments.HomeFragment
-import com.dam.musicapp.ui.fragments.ProfileFragment
-import com.dam.musicapp.ui.fragments.ProgressFragment
-import com.dam.musicapp.ui.fragments.RehabFragment
+import com.dam.rehapp.R
+import com.dam.rehapp.model.PanelButton
+import com.dam.rehapp.ui.fragments.HomeFragment
+import com.dam.rehapp.ui.fragments.ProfileFragment
+import com.dam.rehapp.ui.fragments.ProgressFragment
+import com.dam.rehapp.ui.fragments.RehabFragment
 
 class PanelPrincipalActivity : AppCompatActivity() {
 

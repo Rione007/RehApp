@@ -1,4 +1,4 @@
-package com.dam.musicapp
+package com.dam.rehapp
 
 import org.junit.Test
 
