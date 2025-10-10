@@ -38,6 +38,7 @@ android {
 dependencies {
 
     implementation("androidx.cardview:cardview")
+    implementation("androidx.coordinatorlayout:coordinatorlayout")
     implementation("androidx.recyclerview:recyclerview")
     implementation("androidx.compose.ui:ui-text-google-fonts:1.9.2")
     implementation(libs.androidx.core.ktx)
