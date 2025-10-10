@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dam.musicapp.R
+import com.dam.musicapp.model.EstadoNivel
 import com.dam.musicapp.model.NivelRehab
 
 class NivelAdapter(private val niveles: List<NivelRehab>) :
@@ -17,7 +19,7 @@ class NivelAdapter(private val niveles: List<NivelRehab>) :
         val titulo = itemView.findViewById<TextView>(R.id.txtTituloNivel)
         val subtitulo = itemView.findViewById<TextView>(R.id.txtDescripcionNivel)
         val progreso = itemView.findViewById<ProgressBar>(R.id.progresoNivel)
-        val imgEstado = itemView.findViewById<ImageView>(R.id.iconNivel)
+        val iconNivel = itemView.findViewById<ImageView>(R.id.iconNivel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NivelViewHolder {
@@ -32,11 +34,22 @@ class NivelAdapter(private val niveles: List<NivelRehab>) :
         holder.subtitulo.text = nivel.descripcion
         holder.progreso.progress = nivel.progreso
 
-        if (nivel.desbloqueado) {
-            holder.imgEstado.setImageResource(R.drawable.ic_check)
-        } else {
-            holder.imgEstado.setImageResource(R.drawable.ic_lock)
-            holder.itemView.alpha = 0.5f
+        when (nivel.estado) {
+            EstadoNivel.COMPLETADO -> {
+                holder.iconNivel.setImageResource(R.drawable.ic_check)
+                holder.itemView.alpha = 1f
+                holder.iconNivel.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.white))
+            }
+            EstadoNivel.DISPONIBLE -> {
+                holder.iconNivel.setImageResource(R.drawable.ic_play)
+                holder.itemView.alpha = 1f
+                holder.iconNivel.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.white))
+            }
+            EstadoNivel.BLOQUEADO -> {
+                holder.iconNivel.setImageResource(R.drawable.ic_lock)
+                holder.itemView.alpha = 0.4f
+                holder.iconNivel.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.placeholder_dark))
+            }
         }
     }
 

@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dam.musicapp.R
 import com.dam.musicapp.model.Rehab
 
-class RehabAdapter(private val rehabs:List<Rehab>): RecyclerView.Adapter<RehabAdapter.RehabViewHolder>() {
+class RehabAdapter(
+    private val rehabs:List<Rehab>,
+    private val onItemClick: (Rehab) -> Unit
+): RecyclerView.Adapter<RehabAdapter.RehabViewHolder>() {
 
     class RehabViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val txtNameRehab: TextView = itemView.findViewById(R.id.txtNameRehab)
@@ -26,6 +29,10 @@ class RehabAdapter(private val rehabs:List<Rehab>): RecyclerView.Adapter<RehabAd
         val rehab = rehabs[position]
         holder.txtNameRehab.text = rehab.name
         holder.icRehabImg.setImageResource(rehab.imgRes)
+
+        holder.itemView.setOnClickListener {
+            onItemClick(rehab)
+        }
     }
 
     override fun getItemCount(): Int = rehabs.size

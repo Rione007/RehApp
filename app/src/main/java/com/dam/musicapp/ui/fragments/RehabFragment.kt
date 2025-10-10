@@ -32,8 +32,18 @@ class RehabFragment : Fragment() {
         val recyclerRehab = view.findViewById<RecyclerView>(R.id.recyclerRehab)
 
         recyclerRehab.layoutManager = LinearLayoutManager(requireContext())
-        recyclerRehab.adapter = RehabAdapter(rehabs)
+        recyclerRehab.adapter = RehabAdapter(rehabs) { selectedRehab ->
+            openNivelRehabFragment(selectedRehab)
+        }
         return view
+    }
+    private fun openNivelRehabFragment(rehab: Rehab) {
+        val fragment = NivelRehabFragment.newInstance(rehab)
+
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     companion object {
