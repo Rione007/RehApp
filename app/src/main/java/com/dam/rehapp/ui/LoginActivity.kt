@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -33,6 +34,12 @@ class LoginActivity : AppCompatActivity() {
         val txtPassword = findViewById<EditText>(R.id.txtPassword)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val btnGoogle = findViewById<LinearLayout>(R.id.btnGoogle)
+        val signUpText = findViewById<TextView>(R.id.sign_up)
+
+        signUpText.setOnClickListener {
+            val intent = Intent(this, RegistrarActivity::class.java)
+            startActivity(intent)
+        }
 
         btnLogin.setOnClickListener {
             val user = txtUser.text.toString()
