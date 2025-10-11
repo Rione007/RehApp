@@ -36,8 +36,12 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:gravity="center"
-
                     android:textColor="@color/black"/>
+                <ImageView
+                    android:id="@+id/row_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_config"/>
             </LinearLayout>
 
             <!-- Profile header: avatar + name -->
