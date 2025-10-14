@@ -39,7 +39,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:id="@+id/btnHome"
-            android:background="@drawable/bg_button_selector"
             android:gravity="center">
             <ImageView
                 android:id="@+id/iconHome"
@@ -61,7 +60,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:id="@+id/btnRehab"
-            android:background="@drawable/bg_button_selector"
             android:gravity="center">
             <ImageView
                 android:id="@+id/iconRehab"
@@ -83,7 +81,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:id="@+id/btnProgress"
-            android:background="@drawable/bg_button_selector"
             android:gravity="center">
             <ImageView
                 android:id="@+id/iconProgress"
@@ -105,7 +102,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:id="@+id/btnProfile"
-            android:background="@drawable/bg_button_selector"
             android:gravity="center">
             <ImageView
                 android:id="@+id/iconProfile"

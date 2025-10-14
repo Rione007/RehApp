@@ -12,14 +12,46 @@ import com.dam.rehapp.R
 import com.dam.rehapp.model.EstadoNivel
 import com.dam.rehapp.model.NivelRehab
 
-class NivelAdapter(private val niveles: List<NivelRehab>) :
-    RecyclerView.Adapter<NivelAdapter.NivelViewHolder>() {
+class NivelAdapter(
+    private val niveles: List<NivelRehab>,
+    private val onItemClick: (NivelRehab) -> Unit
+) : RecyclerView.Adapter<NivelAdapter.NivelViewHolder>() {
 
     inner class NivelViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titulo = itemView.findViewById<TextView>(R.id.txtTituloNivel)
         val subtitulo = itemView.findViewById<TextView>(R.id.txtDescripcionNivel)
         val progreso = itemView.findViewById<ProgressBar>(R.id.progresoNivel)
         val iconNivel = itemView.findViewById<ImageView>(R.id.iconNivel)
+
+        fun bind(nivel: NivelRehab) {
+            titulo.text = nivel.titulo
+            subtitulo.text = nivel.descripcion
+            progreso.progress = nivel.progreso
+
+            when (nivel.estado) {
+                EstadoNivel.COMPLETADO -> {
+                    iconNivel.setImageResource(R.drawable.ic_check)
+                    itemView.alpha = 1f
+                    iconNivel.setColorFilter(ContextCompat.getColor(itemView.context, R.color.white))
+                }
+                EstadoNivel.DISPONIBLE -> {
+                    iconNivel.setImageResource(R.drawable.ic_play)
+                    itemView.alpha = 1f
+                    iconNivel.setColorFilter(ContextCompat.getColor(itemView.context, R.color.white))
+                }
+                EstadoNivel.BLOQUEADO -> {
+                    iconNivel.setImageResource(R.drawable.ic_lock)
+                    itemView.alpha = 0.4f
+                    iconNivel.setColorFilter(ContextCompat.getColor(itemView.context, R.color.placeholder_dark))
+                }
+            }
+
+            itemView.setOnClickListener {
+                if (nivel.estado != EstadoNivel.BLOQUEADO) {
+                    onItemClick(nivel)
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NivelViewHolder {
@@ -29,29 +61,9 @@ class NivelAdapter(private val niveles: List<NivelRehab>) :
     }
 
     override fun onBindViewHolder(holder: NivelViewHolder, position: Int) {
-        val nivel = niveles[position]
-        holder.titulo.text = nivel.titulo
-        holder.subtitulo.text = nivel.descripcion
-        holder.progreso.progress = nivel.progreso
-
-        when (nivel.estado) {
-            EstadoNivel.COMPLETADO -> {
-                holder.iconNivel.setImageResource(R.drawable.ic_check)
-                holder.itemView.alpha = 1f
-                holder.iconNivel.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.white))
-            }
-            EstadoNivel.DISPONIBLE -> {
-                holder.iconNivel.setImageResource(R.drawable.ic_play)
-                holder.itemView.alpha = 1f
-                holder.iconNivel.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.white))
-            }
-            EstadoNivel.BLOQUEADO -> {
-                holder.iconNivel.setImageResource(R.drawable.ic_lock)
-                holder.itemView.alpha = 0.4f
-                holder.iconNivel.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.placeholder_dark))
-            }
-        }
+        holder.bind(niveles[position])
     }
 
     override fun getItemCount() = niveles.size
 }
+

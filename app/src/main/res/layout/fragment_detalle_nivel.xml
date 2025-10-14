@@ -1,0 +1,61 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txtTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"/>
+
+        <VideoView
+            android:id="@+id/videoNivel"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="8dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:progress="75"
+            android:max="100"
+            android:progressTint="@color/primary"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/txtDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Instrucciones:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+        <!-- Aquí podrías colocar una lista o recycler con instrucciones -->
+        <TextView
+            android:id="@+id/txtInstrucciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="- Mantén la postura\n- Respira profundo\n- Repite 10 veces"
+            android:textSize="15sp"
+            android:layout_marginTop="8dp"/>
+    </LinearLayout>
+</ScrollView>

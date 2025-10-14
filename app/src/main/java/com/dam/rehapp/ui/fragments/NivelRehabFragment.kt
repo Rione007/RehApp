@@ -36,7 +36,14 @@ class NivelRehabFragment : Fragment() {
         niveles = NivelRehab.getNiveles().filter { it.rehabId == rehabId }
 
         recyclerNiveles.layoutManager = LinearLayoutManager(requireContext())
-        recyclerNiveles.adapter = NivelAdapter(niveles)
+        recyclerNiveles.adapter = NivelAdapter(niveles) { nivelSeleccionado ->
+            val detalleFragment = DetalleNivelFragment.newInstance(nivelSeleccionado)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, detalleFragment)
+                .addToBackStack(null)
+                .commit()
+        }
+
 
 
 
