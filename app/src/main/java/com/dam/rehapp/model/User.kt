@@ -1,23 +1,13 @@
 package com.dam.rehapp.model
 
-class User {
-    var id: Int = 0
-    var name: String = ""
-    var user: String = ""
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "users")
+data class User(
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0,
+    var name: String = "",
+    var email: String = "",// nombre de usuario (tu campo actual)
     var password: String = ""
-
-    constructor(id: Int, name: String, user: String, password: String){
-        this.id = id
-        this.name = name
-        this.user = user
-        this.password = password
-    }
-
-    companion object {
-        fun getUsers(): List<User> {
-            return listOf(
-                User(1, "Anderson Villegas", "admin", "1234")
-            )
-        }
-    }
-}
+)

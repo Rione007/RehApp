@@ -11,24 +11,30 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.content.edit
 import com.dam.rehapp.R
-import com.dam.rehapp.model.User
+import com.dam.rehapp.bd.BDHelper
+import com.dam.rehapp.dao.UserDao
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import androidx.core.content.edit
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var userDao: UserDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        // Base de datos local
+        val dbHelper = BDHelper(this)
+        userDao = UserDao(dbHelper)
 
         val txtUser = findViewById<EditText>(R.id.txtEmail)
         val txtPassword = findViewById<EditText>(R.id.txtPassword)
@@ -37,22 +43,29 @@ class LoginActivity : AppCompatActivity() {
         val signUpText = findViewById<TextView>(R.id.sign_up)
 
         signUpText.setOnClickListener {
-            val intent = Intent(this, RegistrarActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, RegistrarActivity::class.java))
         }
 
+        // 🔹 LOGIN LOCAL (SQLite)
         btnLogin.setOnClickListener {
             val user = txtUser.text.toString()
             val password = txtPassword.text.toString()
 
-            if (User.getUsers().any { it.user == user && it.password == password }){
-                val intent = Intent(this, PanelPrincipalActivity::class.java)
-                startActivity(intent)
+            if (user.isNotEmpty() && password.isNotEmpty()) {
+                val usuario = userDao.loginUser(user, password)
+                if (usuario != null) {
+                    Toast.makeText(this, "Bienvenido ${usuario.name}", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, PanelPrincipalActivity::class.java))
+                    finish()
+                } else {
+                    Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
+                }
             } else {
-                Toast.makeText(this, "Credenciales Incorrectas", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
             }
         }
 
+        // 🔹 LOGIN CON GOOGLE
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -66,7 +79,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         enableEdgeToEdge()
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.root)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -74,12 +86,10 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-
     private fun signInWithGoogle() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, 100)
     }
-
 
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -104,10 +114,9 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(Intent(this, PanelPrincipalActivity::class.java))
                     finish()
                 } else {
-                    Toast.makeText(this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Error al iniciar sesión con Google", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
-
 }
