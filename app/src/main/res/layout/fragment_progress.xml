@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/progress_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Contenido principal desplazable -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Progreso general -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Progreso General"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="18dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvProgressLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Progreso total"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvProgressPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="75% completado"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <!-- Barra de progreso (fondo + fg dinámico) -->
+                <ProgressBar
+                    android:id="@+id/progresoNivel"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"
+                    android:layout_marginTop="12dp"
+                    android:progress="75"
+                    android:progressTint="@color/primary" />
+            </LinearLayout>
+
+            <!-- Tarjeta: Progreso semanal + gráfico -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:weightSum="1">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvWeeklyLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Progreso semanal"
+                                android:textSize="16sp"
+                                android:textColor="@color/black"/>
+
+                            <TextView
+                                android:id="@+id/tvWeeklyPercent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="75%"
+                                android:textSize="28sp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="4dp"
+                                android:textColor="@color/black"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            tools:ignore="UseCompoundDrawables">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_trending_up"
+                                app:tint="@color/primary" />
+
+                            <TextView
+                                android:id="@+id/tvWeeklyDelta"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="+10%"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:layout_marginStart="6dp"
+                                android:textColor="@color/primary"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Gráfico: usa ImageView placeholder o reemplaza con MPAndroidChart/AnyChart -->
+                    <ImageView
+                        android:id="@+id/imgChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:layout_marginTop="12dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_cat"
+                        android:contentDescription="chart"/>
+
+                    <!-- Labels días -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:weightSum="7">
+
+                        <TextView android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Lun" android:gravity="center" android:textSize="12sp" android:textColor="@color/black"/>
+                        <TextView android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Mar" android:gravity="center" android:textSize="12sp" android:textColor="@color/black"/>
+                        <TextView android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Mié" android:gravity="center" android:textSize="12sp" android:textColor="@color/black"/>
+                        <TextView android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Jue" android:gravity="center" android:textSize="12sp" android:textColor="@color/black"/>
+                        <TextView android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Vie" android:gravity="center" android:textSize="12sp" android:textColor="@color/black"/>
+                        <TextView android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Sáb" android:gravity="center" android:textSize="12sp" android:textColor="@color/black"/>
+                        <TextView android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Dom" android:gravity="center" android:textSize="12sp" android:textColor="@color/black"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Estadísticas (grid 2 cols) -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estadísticas"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginBottom="12dp"/>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:rowCount="1"
+                android:columnOrderPreserved="false"
+                android:useDefaultMargins="true">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="2dp"
+                    android:layout_columnWeight="1"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_button_primary">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Niveles Completados" android:textColor="@color/black" android:textSize="14sp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="15" android:textSize="22sp" android:textStyle="bold" android:layout_marginTop="6dp" android:textColor="@color/black"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="2dp"
+                    android:layout_columnWeight="1"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_button_primary">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tiempo Total" android:textColor="@color/black" android:textSize="14sp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="12h" android:textSize="22sp" android:textStyle="bold" android:layout_marginTop="6dp" android:textColor="@color/black"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </GridLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="24dp"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

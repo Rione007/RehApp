@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">RehApp</string>
+    <string name="login">Log In</string>
+    <string name="welcome_back">Welcome back</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="or_continue">Or continue with</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign up</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_web_client_id">848750716557-4fgovr63qukrvfo5favmvrj8ei8sv1e1.apps.googleusercontent.com</string>
+</resources>
