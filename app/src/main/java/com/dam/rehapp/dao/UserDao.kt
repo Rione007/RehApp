@@ -3,15 +3,14 @@ package com.dam.rehapp.dao
 import android.content.ContentValues
 import android.database.Cursor
 import com.dam.rehapp.bd.BDHelper
-import com.dam.rehapp.model.User
+import com.dam.rehapp.data.model.User
 
 class UserDao(private val dbHelper: BDHelper) {
 
-    fun registerUser(user: User): Boolean {
+    fun registerUser(user: com.dam.rehapp.model.User): Boolean {
         val db = dbHelper.writableDatabase
         val cursor = db.rawQuery("SELECT * FROM users WHERE email = ?", arrayOf(user.email))
 
-        // Verificar si ya existe
         if (cursor.count > 0) {
             cursor.close()
             db.close()
@@ -21,7 +20,6 @@ class UserDao(private val dbHelper: BDHelper) {
         val values = ContentValues().apply {
             put("name", user.name)
             put("email", user.email)
-            put("password", user.password)
         }
 
         val result = db.insert("users", null, values)
@@ -41,8 +39,7 @@ class UserDao(private val dbHelper: BDHelper) {
             user = User(
                 id = cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                 name = cursor.getString(cursor.getColumnIndexOrThrow("name")),
-                email = cursor.getString(cursor.getColumnIndexOrThrow("email")),
-                password = cursor.getString(cursor.getColumnIndexOrThrow("password"))
+                email = cursor.getString(cursor.getColumnIndexOrThrow("email"))
             )
         }
 
@@ -50,4 +47,27 @@ class UserDao(private val dbHelper: BDHelper) {
         db.close()
         return user
     }
+
+    fun getUserByEmail(email: String): User? {
+        val db = dbHelper.readableDatabase
+        val cursor = db.rawQuery(
+            "SELECT * FROM users WHERE email = ?",
+            arrayOf(email)
+        )
+
+        var user: User? = null
+        if (cursor.moveToFirst()) {
+            user = User(
+                id = cursor.getInt(cursor.getColumnIndexOrThrow("id")),
+                name = cursor.getString(cursor.getColumnIndexOrThrow("name")),
+                email = cursor.getString(cursor.getColumnIndexOrThrow("email"))
+            )
+        }
+
+        cursor.close()
+        db.close()
+        return user
+    }
+
+
 }

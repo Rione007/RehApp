@@ -1,11 +1,13 @@
 package com.dam.rehapp.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dam.rehapp.R
+import android.widget.TextView
 
 
 class HomeFragment : Fragment() {
@@ -21,6 +23,13 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+        val tvGreetingSmall = view.findViewById<TextView>(R.id.tvGreetingSmall)
+
+        val prefs = requireActivity().getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val name = prefs.getString("name", "Usuario")
+
+        tvGreetingSmall.text = "Hola, $name 👋"
         return view
     }
 

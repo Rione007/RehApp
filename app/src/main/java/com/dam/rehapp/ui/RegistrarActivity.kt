@@ -12,6 +12,7 @@ import com.dam.rehapp.bd.BDHelper
 import com.dam.rehapp.dao.UserDao
 import com.dam.rehapp.model.User
 
+
 class RegistrarActivity : AppCompatActivity() {
 
     private lateinit var userDao: UserDao
