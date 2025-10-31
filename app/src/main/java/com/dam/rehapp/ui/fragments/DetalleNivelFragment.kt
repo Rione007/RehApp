@@ -60,47 +60,38 @@ class DetalleNivelFragment : Fragment() {
             else -> "- Mejora tu equilibrio manteniendo la postura"
         }
 
-        // 🔐 Obtener ID del usuario activo
         val prefsUser = requireContext().getSharedPreferences("rehapp_user", Context.MODE_PRIVATE)
         usuarioId = prefsUser.getString("usuario_id", "default") ?: "default"
 
-        // 🎬 Configurar VideoView
         mediaController = MediaController(requireContext())
         mediaController.setAnchorView(videoNivel)
         videoNivel.setMediaController(mediaController)
 
-// 🧩 Ajuste para que todas las rehabilitaciones usen los mismos videos base
-        val numeroVideo = ((nivel.id - 1) % 5) + 1  // valores 1..5
+        val numeroVideo = ((nivel.id - 1) % 5) + 1
         val videoUri = Uri.parse("android.resource://${requireContext().packageName}/raw/nivel$numeroVideo")
         videoNivel.setVideoURI(videoUri)
 
-
-        // Cuando el video está listo
         videoNivel.setOnPreparedListener { mp ->
             videoPreparado = true
             mp.isLooping = false
             mediaController.show(0)
         }
 
-        // Si ocurre error con el video (archivo faltante o incompatible)
         videoNivel.setOnErrorListener { _, _, _ ->
             videoPreparado = false
             Toast.makeText(requireContext(), "⚠️ No se pudo reproducir nivel${nivel.id}.mp4", Toast.LENGTH_LONG).show()
             true
         }
 
-        // Solo marca completado si el video se reprodujo entero
         videoNivel.setOnCompletionListener {
             if (videoPreparado) marcarCompletado()
         }
 
-        // Botón para marcar manualmente (solo si se reprodujo)
         fab.setOnClickListener {
             if (videoPreparado) marcarCompletado()
             else Toast.makeText(requireContext(), "🎥 Reproduce el video antes de marcarlo.", Toast.LENGTH_SHORT).show()
         }
 
-        // 🔄 Barra de progreso del video
         val handler = Handler(Looper.getMainLooper())
         handler.post(object : Runnable {
             override fun run() {
@@ -119,21 +110,28 @@ class DetalleNivelFragment : Fragment() {
         val context = requireContext()
         val progresos = ProgresoStorage.obtenerProgresos(context, usuarioId)
 
+        // ✅ Calcular duración en minutos del video visto
+        val duracionMin = if (videoNivel.duration > 0)
+            (videoNivel.duration / 60000.0).toLong().coerceAtLeast(1)
+        else
+            1L
+
         // ✅ Guardar progreso de este nivel
         val existente = progresos.find { it.nivelId == nivel.id }
         if (existente != null) {
             existente.progreso = 100
+            existente.tiempoTotalMin = duracionMin
         } else {
-            progresos.add(ProgresoNivel(nivel.id, 100, System.currentTimeMillis()))
+            progresos.add(ProgresoNivel(nivel.id, 100, duracionMin))
         }
 
-        // 🔓 Desbloquear siguiente nivel solo para este usuario
+        // ✅ Desbloquear siguiente nivel (si aplica)
         val nivelesRehab = NivelRehab.getNiveles().filter { it.rehabId == nivel.rehabId }
         val indice = nivelesRehab.indexOfFirst { it.id == nivel.id }
         if (indice in 0 until nivelesRehab.lastIndex) {
             val siguiente = nivelesRehab[indice + 1]
             if (progresos.none { it.nivelId == siguiente.id }) {
-                progresos.add(ProgresoNivel(siguiente.id, 0, System.currentTimeMillis()))
+                progresos.add(ProgresoNivel(siguiente.id, 0, 0))
             }
         }
 
