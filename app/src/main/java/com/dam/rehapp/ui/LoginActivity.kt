@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
         val txtUser = findViewById<EditText>(R.id.txtEmail)
         val txtPassword = findViewById<EditText>(R.id.txtPassword)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
-        val btnGoogle = findViewById<LinearLayout>(R.id.btnGoogle)
+        //val btnGoogle = findViewById<LinearLayout>(R.id.btnGoogle)
         val signUpText = findViewById<TextView>(R.id.sign_up)
 
         // Ir a registro

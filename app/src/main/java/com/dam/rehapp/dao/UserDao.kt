@@ -50,4 +50,23 @@ class UserDao(private val dbHelper: BDHelper) {
         db.close()
         return user
     }
+    fun updatePassword(email: String, oldPass: String, newPass: String): Boolean {
+        val db = dbHelper.writableDatabase
+        val cursor = db.rawQuery("SELECT * FROM users WHERE email = ? AND password = ?", arrayOf(email, oldPass))
+
+        return if (cursor.moveToFirst()) {
+            val values = android.content.ContentValues().apply {
+                put("password", newPass)
+            }
+            db.update("users", values, "email = ?", arrayOf(email))
+            cursor.close()
+            db.close()
+            true
+        } else {
+            cursor.close()
+            db.close()
+            false
+        }
+    }
+
 }
