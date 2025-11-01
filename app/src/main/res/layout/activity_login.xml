@@ -109,11 +109,11 @@
                 android:layout_height="1dp"
                 android:layout_weight="1" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="  O continuar Con  "
-                android:textSize="18sp" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="  O continuar Con  "-->
+<!--                android:textSize="18sp" />-->
 
             <View
                 android:layout_width="0dp"
@@ -131,28 +131,28 @@
             android:spacing="8dp"
             android:weightSum="2">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginEnd="8dp"
-                android:id="@+id/btnGoogle"
-                android:background="@drawable/bg_input"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="8dp">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:id="@+id/btnGoogle"-->
+<!--                android:background="@drawable/bg_input"-->
+<!--                android:gravity="center"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:padding="8dp">-->
 
-                <ImageView
-                    android:id="@+id/google_icon"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:contentDescription="Google"
-                    android:src="@drawable/ic_google" />
+<!--                <ImageView-->
+<!--                    android:id="@+id/google_icon"-->
+<!--                    android:layout_width="20dp"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:contentDescription="Google"-->
+<!--                    android:src="@drawable/ic_google" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="  Google" />
-            </LinearLayout>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="  Google" />-->
+<!--            </LinearLayout>-->
         </LinearLayout>
 
     </LinearLayout>

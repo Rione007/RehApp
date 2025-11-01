@@ -74,18 +74,18 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        // 🔹 LOGIN CON GOOGLE
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
-        auth = FirebaseAuth.getInstance()
-
-        btnGoogle.setOnClickListener {
-            signInWithGoogle()
-        }
+//        // 🔹 LOGIN CON GOOGLE
+//        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//            .requestIdToken(getString(R.string.default_web_client_id))
+//            .requestEmail()
+//            .build()
+//
+//        googleSignInClient = GoogleSignIn.getClient(this, gso)
+//        auth = FirebaseAuth.getInstance()
+//
+//        btnGoogle.setOnClickListener {
+//            signInWithGoogle()
+//        }
 
         // Ajuste visual
         enableEdgeToEdge()
